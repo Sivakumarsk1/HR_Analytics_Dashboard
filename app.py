@@ -27,7 +27,9 @@ def dashboard():
         "Experienced vs Attrition",
         "Distance from Home vs Attrition",
         "Years with Current Manager vs Attrition",
-        "Total Working Years vs Attrition"
+        "Total Working Years vs Attrition",
+        "Gender vs Monthly Income",
+        "Monthly Income vs Job Role"
     ]
 
     # ===== Graph selection =====
@@ -81,6 +83,31 @@ def dashboard():
         c = df.groupby(["TotalWorkingYears", "Attrition"]).size().reset_index(name="Count")
         fig = px.bar(c, x="TotalWorkingYears", y="Count", color="Attrition",
                      title=selected_chart, template="plotly_dark")
+
+    # ===== NEW CHART 1 =====
+    elif selected_chart == "Gender vs Monthly Income":
+        group_col = "Gender"
+        fig = px.box(
+            df,
+            x="Gender",
+            y="MonthlyIncome",
+            color="Gender",
+            title=selected_chart,
+            template="plotly_dark"
+        )
+
+    # ===== NEW CHART 2 =====
+    elif selected_chart == "Monthly Income vs Job Role":
+        group_col = "JobRole"
+        fig = px.box(
+            df,
+            x="JobRole",
+            y="MonthlyIncome",
+            color="JobRole",
+            title=selected_chart,
+            template="plotly_dark"
+        )
+        fig.update_layout(xaxis_tickangle=-45)
 
     # ===== Dynamic Numbers =====
     top_category = df[group_col].value_counts().idxmax()
