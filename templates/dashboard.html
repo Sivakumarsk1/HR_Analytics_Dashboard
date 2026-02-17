@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HR Analytics Dashboard</title>
+    <style>
+        body{
+            background:#0f172a;
+            color:white;
+            font-family:Arial;
+            margin:0;
+        }
+
+        .header{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:20px 30px;
+            background:#111827;
+        }
+
+        .title{
+            font-size:26px;
+            font-weight:bold;
+            color:#38bdf8;
+        }
+
+        select{
+            padding:10px;
+            border-radius:8px;
+            background:#1f2937;
+            color:white;
+            border:none;
+        }
+
+        .cards{
+            display:flex;
+            gap:20px;
+            padding:20px 30px;
+        }
+
+        .card{
+            flex:1;
+            background:#1f2937;
+            padding:20px;
+            border-radius:12px;
+            text-align:center;
+            box-shadow:0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .card h3{
+            color:#9ca3af;
+        }
+
+        .card h1{
+            color:#38bdf8;
+        }
+
+        .chart-box{
+            margin:0 30px 30px;
+            background:#111827;
+            border-radius:14px;
+            padding:15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="title">📊 HR Analytics Dashboard</div>
+
+    <form method="get">
+        <select name="chart" onchange="this.form.submit()">
+            {% for c in chart_options %}
+                <option value="{{c}}" {% if c==selected_chart %}selected{% endif %}>{{c}}</option>
+            {% endfor %}
+        </select>
+    </form>
+</div>
+
+<div class="cards">
+    <div class="card">
+        <h3>Total Employees</h3>
+        <h1>{{ total_emp }}</h1>
+    </div>
+    <div class="card">
+        <h3>Total Attrition</h3>
+        <h1>{{ total_attrition }}</h1>
+    </div>
+    <div class="card">
+        <h3>Attrition Rate</h3>
+        <h1>{{ attrition_rate }}%</h1>
+    </div>
+</div>
+
+<div class="chart-box">
+    {{ graph_html | safe }}
+</div>
+
+</body>
+</html>
