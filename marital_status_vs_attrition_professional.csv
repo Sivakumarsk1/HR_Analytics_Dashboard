@@ -1,4 +1,0 @@
-MaritalStatus,TotalEmployees,AttritionCount,AttritionRatePercent,Insight
-Single,470,120,25.53,Higher attrition risk compared to other marital groups.
-Married,680,85,12.5,Lower attrition risk compared to single employees.
-Divorced,320,32,10.0,Lower attrition risk compared to single employees.
