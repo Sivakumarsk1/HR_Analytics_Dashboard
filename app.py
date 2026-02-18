@@ -36,55 +36,85 @@ def dashboard():
     if selected_chart == "Age vs Attrition Analysis":
         group_col = "Age"
         c = df.groupby(["Age", "Attrition"]).size().reset_index(name="Count")
-        fig = px.bar(c, x="Age", y="Count", color="Attrition",
-                     title=selected_chart, template="plotly_dark")
+        fig = px.bar(
+            c, x="Age", y="Count", color="Attrition",
+            text="Count",
+            title=selected_chart, template="plotly_dark"
+        )
+        fig.update_traces(textposition="outside")
 
     elif selected_chart == "Marital Status vs Attrition":
         group_col = "MaritalStatus"
         c = df.groupby(["MaritalStatus", "Attrition"]).size().reset_index(name="Count")
-        fig = px.bar(c, x="MaritalStatus", y="Count", color="Attrition",
-                     barmode="group", title=selected_chart,
-                     template="plotly_dark")
+        fig = px.bar(
+            c, x="MaritalStatus", y="Count", color="Attrition",
+            barmode="group", text="Count",
+            title=selected_chart, template="plotly_dark"
+        )
+        fig.update_traces(textposition="outside")
 
     elif selected_chart == "Job Role vs Attrition":
         group_col = "JobRole"
         c = df.groupby(["JobRole", "Attrition"]).size().reset_index(name="Count")
-        fig = px.bar(c, x="JobRole", y="Count", color="Attrition",
-                     barmode="group", title=selected_chart,
-                     template="plotly_dark")
+        fig = px.bar(
+            c, x="JobRole", y="Count", color="Attrition",
+            barmode="group", text="Count",
+            title=selected_chart, template="plotly_dark"
+        )
+        fig.update_traces(textposition="outside")
         fig.update_layout(xaxis_tickangle=-45)
 
     elif selected_chart == "Job Involvement vs Attrition":
         group_col = "JobInvolvement"
         c = df.groupby(["JobInvolvement", "Attrition"]).size().reset_index(name="Count")
-        fig = px.bar(c, x="JobInvolvement", y="Count", color="Attrition",
-                     title=selected_chart, template="plotly_dark")
+        fig = px.bar(
+            c, x="JobInvolvement", y="Count", color="Attrition",
+            text="Count",
+            title=selected_chart, template="plotly_dark"
+        )
+        fig.update_traces(textposition="outside")
 
     elif selected_chart == "Experienced vs Attrition":
         group_col = "YearsAtCompany"
         c = df.groupby(["YearsAtCompany", "Attrition"]).size().reset_index(name="Count")
-        fig = px.bar(c, x="YearsAtCompany", y="Count", color="Attrition",
-                     title=selected_chart, template="plotly_dark")
+        fig = px.bar(
+            c, x="YearsAtCompany", y="Count", color="Attrition",
+            text="Count",
+            title=selected_chart, template="plotly_dark"
+        )
+        fig.update_traces(textposition="outside")
 
     elif selected_chart == "Distance from Home vs Attrition":
         group_col = "DistanceFromHome"
         c = df.groupby(["DistanceFromHome", "Attrition"]).size().reset_index(name="Count")
-        fig = px.bar(c, x="DistanceFromHome", y="Count", color="Attrition",
-                     title=selected_chart, template="plotly_dark")
+        fig = px.bar(
+            c, x="DistanceFromHome", y="Count", color="Attrition",
+            text="Count",
+            title=selected_chart, template="plotly_dark"
+        )
+        fig.update_traces(textposition="outside")
 
     elif selected_chart == "Years with Current Manager vs Attrition":
         group_col = "YearsWithCurrManager"
         c = df.groupby(["YearsWithCurrManager", "Attrition"]).size().reset_index(name="Count")
-        fig = px.bar(c, x="YearsWithCurrManager", y="Count", color="Attrition",
-                     title=selected_chart, template="plotly_dark")
+        fig = px.bar(
+            c, x="YearsWithCurrManager", y="Count", color="Attrition",
+            text="Count",
+            title=selected_chart, template="plotly_dark"
+        )
+        fig.update_traces(textposition="outside")
 
     elif selected_chart == "Total Working Years vs Attrition":
         group_col = "TotalWorkingYears"
         c = df.groupby(["TotalWorkingYears", "Attrition"]).size().reset_index(name="Count")
-        fig = px.bar(c, x="TotalWorkingYears", y="Count", color="Attrition",
-                     title=selected_chart, template="plotly_dark")
+        fig = px.bar(
+            c, x="TotalWorkingYears", y="Count", color="Attrition",
+            text="Count",
+            title=selected_chart, template="plotly_dark"
+        )
+        fig.update_traces(textposition="outside")
 
-    # ===== NEW CHART 1 =====
+    # ===== Gender vs Income =====
     elif selected_chart == "Gender vs Monthly Income":
         group_col = "Gender"
         fig = px.box(
@@ -95,8 +125,9 @@ def dashboard():
             title=selected_chart,
             template="plotly_dark"
         )
+        fig.update_traces(hoverinfo="skip", hovertemplate=None)
 
-    # ===== NEW CHART 2 =====
+    # ===== Income vs Job Role =====
     elif selected_chart == "Monthly Income vs Job Role":
         group_col = "JobRole"
         fig = px.box(
@@ -107,6 +138,7 @@ def dashboard():
             title=selected_chart,
             template="plotly_dark"
         )
+        fig.update_traces(hoverinfo="skip", hovertemplate=None)
         fig.update_layout(xaxis_tickangle=-45)
 
     # ===== Dynamic Numbers =====
